@@ -1,0 +1,19 @@
+{
+  "modbus-contrib": {
+    "label": {
+      "showActivities": "Aktivitäten anzeigen",
+      "showErrors": "Fehler anzeigen",
+      "showWarnings": "Warnungen anzeigen",
+      "address": "Adresse",
+      "quantity": "Anzahl",
+      "pollrate": "Poll-Rate",
+      "useIOFile": "Nutze IO-Datei",
+      "ioFile": "IO-Datei",
+      "delayOnStart": "Verzögerung bei der Aktivierung des Eingangs"
+    },
+    "tabs-label": {
+      "settings": "Einstellungen",
+      "options": "Optionales"
+    }
+  }
+}

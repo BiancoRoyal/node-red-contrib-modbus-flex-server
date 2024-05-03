@@ -1,0 +1,22 @@
+{
+  "modbus-contrib": {
+    "label": {
+      "unitId": "Unit-Id",
+      "showActivities": "Show Activities",
+      "showErrors": "Show Errors",
+      "showWarnings": "Show Warnings",
+      "functioncode": "FC",
+      "address": "Address",
+      "quantity": "Quantity",
+      "simpleNegatives": "Negative UInt",
+      "server": "Server",
+      "emptyMsgOnFail": "Empty msg on Modbus fail",
+      "keepMsgProperties": "Keep Msg Properties",
+      "delayOnStart": "Delay to activate input"
+    },
+    "tabs-label": {
+      "settings": "Settings",
+      "options": "Optionals"
+    }
+  }
+}
