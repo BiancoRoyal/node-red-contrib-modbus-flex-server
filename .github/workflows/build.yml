@@ -9,7 +9,6 @@ on:
       - development
       - alpha
       - beta
-      - master
       - main
 jobs:
   build:
@@ -27,13 +26,13 @@ jobs:
       - run: tar -czvf distrib.tar.gz modbus examples extras package.json docs index.js README.md CHANGELOG.md
       - uses: actions/upload-artifact@v4
         with:
-          name: build-folders
+          name: build-artifact
           path: distrib.tar.gz
 
   publish:
     runs-on: ubuntu-20.04
     needs: build
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
