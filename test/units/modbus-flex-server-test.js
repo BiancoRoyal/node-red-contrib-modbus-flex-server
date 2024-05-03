@@ -12,10 +12,8 @@
 
 const injectNode = require('@node-red/nodes/core/common/20-inject.js')
 const serverNode = require('../../src/modbus-flex-server.js')
-const clientNode = require('../../src/modbus-client')
-const nodeUnderTest = require('../../src/modbus-flex-sequencer')
 
-const testFlexServerNodes = [injectNode, clientNode, serverNode, nodeUnderTest]
+const testFlexServerNodes = [injectNode, serverNode]
 
 const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
