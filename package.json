@@ -26,14 +26,14 @@
     "biancoroyal"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biancoroyal/node-red-contrib-modbus-flex-server.git"
   },
   "node-red": {
-    "version": ">=2",
+    "version": ">=3",
     "nodes": {
       "Modbus-Flex-Server": "modbus/modbus-flex-server.js"
     }
