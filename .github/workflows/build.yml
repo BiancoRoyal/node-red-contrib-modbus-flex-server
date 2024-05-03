@@ -12,7 +12,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [18, 20, 22]
@@ -26,11 +26,11 @@ jobs:
       - run: tar -czvf distrib-${{ matrix.node }}.tar.gz modbus examples extras package.json docs index.js README.md CHANGELOG.md
       - uses: actions/upload-artifact@v4
         with:
-          name: build-artifact
+          name: build-artifact-${{ matrix.node }}
           path: distrib-${{ matrix.node }}.tar.gz
 
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
