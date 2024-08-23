@@ -160,7 +160,7 @@ since April 2016 by [Klaus Landsdorf][4] and Community Driven
 [9]:http://bit.ly/2jzwjqP
 [10]:https://github.com/BiancoRoyal/node-red-contrib-modbus/wiki/DEBUG
 [11]:https://bianco-royal.space/supporter/
-[12]:https://github.com/BiancoRoyal/node-red-contrib-modbus-flex-modbus
+[12]:https://github.com/BiancoRoyal/node-red-contrib-modbus-flex-server
 [13]:https://www.npmjs.com/package/jsmodbus
 [14]:https://www.npmjs.com/package/serialport
 [15]:https://iniationware.com/
