@@ -1,0 +1,90 @@
+[
+  {
+    "id": "4037d23c646f5468",
+    "type": "tab",
+    "label": "Modbus Flex Server",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "007d8570dbe16407",
+    "type": "debug",
+    "z": "4037d23c646f5468",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "true",
+    "x": 570,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "066cbe592ef1be1b",
+    "type": "inject",
+    "z": "4037d23c646f5468",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 120,
+    "wires": [
+      [
+        "34a71b93e87bebe5"
+      ]
+    ]
+  },
+  {
+    "id": "34a71b93e87bebe5",
+    "type": "modbus-flex-server",
+    "z": "4037d23c646f5468",
+    "name": "",
+    "logEnabled": false,
+    "serverAddress": "0.0.0.0",
+    "serverPort": "15502",
+    "responseDelay": 100,
+    "unitId": 1,
+    "delayUnit": "ms",
+    "coilsBufferSize": 20000,
+    "registersBufferSize": 20000,
+    "minAddress": 0,
+    "splitAddress": 10000,
+    "funcGetCoil": "function getFlexCoil(addr, unitID) {\n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\treturn node.coils.readUInt8(addr * node.bufferFactor) \n\t}  \n}",
+    "funcGetDiscreteInput": "function getFlexDiscreteInput(addr, unitID) {\n\tif (unitID === node.unitId && \n\t\taddr > node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\treturn node.coils.readUInt8(addr * node.bufferFactor) \n\t}  \n}",
+    "funcGetInputRegister": "function getFlexInputRegister(addr, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\treturn node.registers.readUInt16BE(addr * node.bufferFactor)  \n\t} \n}",
+    "funcGetHoldingRegister": "function getFlexHoldingRegsiter(addr, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr > node.splitAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\treturn node.registers.readUInt16BE(addr * node.bufferFactor)  \n\t} \n}",
+    "funcSetCoil": "function setFlexCoil(addr, value, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress) { \n\n\t\tnode.coils.writeUInt8(value, addr * node.bufferFactor)  \n\t} \n}",
+    "funcSetRegister": "function setFlexRegister(addr, value, unitID) { \n\tif (unitID === node.unitId && \n\t\taddr >= node.minAddress && \n\t\taddr <= node.splitAddress * 2) { \n\n\t\tnode.registers.writeUInt16BE(value, addr * node.bufferFactor)  \n\t} \n}",
+    "showErrors": false,
+    "x": 360,
+    "y": 120,
+    "wires": [
+      [
+        "007d8570dbe16407"
+      ],
+      [
+        "007d8570dbe16407"
+      ],
+      [
+        "007d8570dbe16407"
+      ],
+      [
+        "007d8570dbe16407"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "312f3312e2722675",
+    "type": "comment",
+    "z": "4037d23c646f5468",
+    "name": "Server for Modbus Flex Suite Flow",
+    "info": "",
+    "x": 240,
+    "y": 60,
+    "wires": []
+  }
+]
