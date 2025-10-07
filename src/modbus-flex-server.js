@@ -97,11 +97,6 @@ module.exports = function (RED) {
             if (node.showErrors) {
               node.warn(err)
             }
-            mbBasics.setNodeStatusTo('error', node)
-
-            node.modbusServer.close(function () {
-              node.startServer()
-            })
           })
 
           node.modbusServer.on('error', function (err) {
