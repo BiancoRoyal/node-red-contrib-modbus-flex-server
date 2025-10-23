@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-modbus-flex-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "The flexible Modbus TCP server contribution package for Node-RED.",
   "dependencies": {
