@@ -97,11 +97,8 @@ module.exports = function (RED) {
             if (node.showErrors) {
               node.warn(err)
             }
-            mbBasics.setNodeStatusTo('error', node)
 
-            node.modbusServer.close(function () {
-              node.startServer()
-            })
+            node.setNodeStatusTo('active', node)
           })
 
           node.modbusServer.on('error', function (err) {
@@ -121,11 +118,38 @@ module.exports = function (RED) {
           })
 
           node.modbusServer._server.on('error', function (err) {
-            internalDebugLog('Modbus Flex Server client error')
+            internalDebugLog('Modbus Flex Server listener error ' + (err && err.code))
+
+            // Only restart when absolutely necessary: fatal listener/bind errors
+            const code = err && err.code
+            const fatal = code === 'EADDRINUSE' || code === 'EACCES' || code === 'EBADF' || code === 'EADDRNOTAVAIL' || code === 'EMFILE'
+
+            if (!fatal) {
+              // Non-fatal server error: log (verbose) and keep running
+              if (node.showErrors && node.verboseLogging) {
+                node.warn(err)
+              }
+              return
+            }
+
             if (node.showErrors) {
               node.error(err)
             }
             mbBasics.setNodeStatusTo('error', node)
+
+            // Minimal restart strategy: close and restart the TCP server
+            try {
+              node.modbusServer.close(function () {
+                node.modbusServer = null
+                node.startServer()
+              })
+            } catch (e) {
+              // If close throws because server is already down, try to start again
+              try {
+                node.modbusServer = null
+                node.startServer()
+              } catch (_) {}
+            }
           })
         }
 
